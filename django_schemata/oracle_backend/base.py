@@ -95,9 +95,3 @@ class DatabaseWrapper(original_backend.DatabaseWrapper):
 
 DatabaseError = original_backend.DatabaseError
 IntegrityError = original_backend.IntegrityError
-
-try:
-    Database = original_backend.Database
-except AttributeError:
-    pass
-
