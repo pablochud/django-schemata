@@ -101,3 +101,4 @@ try:
 except AttributeError:
     pass
 
+OracleParam = original_backend.OracleParam
