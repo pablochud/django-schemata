@@ -15,11 +15,11 @@ def read_file(filename):
 DESC = " ".join(__import__('django_schemata').__doc__.splitlines()).strip()
 
 setup(
-    name = "django-schemata",
+    name = "django-mga-schemata",
     version = get_git_version(),
-    url = 'https://github.com/tuttle/django-schemata',
-    author = 'Vlada Macek',
-    author_email = 'macek@sandbox.cz',
+    url = 'https://github.com/slafs/django-schemata',
+    author = 'Slawek Ehlert',
+    author_email = 'slafs@op.pl',
     description = DESC,
     long_description = read_file('README'),
     packages = find_packages(),
