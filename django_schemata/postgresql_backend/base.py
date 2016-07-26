@@ -1,8 +1,14 @@
 import os, re
 
 from django.conf import settings
-from django.utils.importlib import import_module
 from django.core.exceptions import ImproperlyConfigured
+
+try:
+    from importlib import import_module
+except ImportError:
+    # to keep backward compatibility
+    from django.utils.importlib import import_module
+
 
 ORIGINAL_BACKEND = getattr(settings, 'ORIGINAL_BACKEND', 'django.db.backends.postgresql_psycopg2')
 
@@ -11,9 +17,11 @@ original_backend = import_module('.base', ORIGINAL_BACKEND)
 # from the postgresql doc
 SQL_IDENTIFIER_RE = re.compile('^[_a-zA-Z][_a-zA-Z0-9]{,62}$')
 
+
 def _check_identifier(identifier):
     if not SQL_IDENTIFIER_RE.match(identifier):
         raise RuntimeError("Invalid string used for the schema name.")
+
 
 class DatabaseWrapper(original_backend.DatabaseWrapper):
     def __init__(self, *args, **kwargs):
