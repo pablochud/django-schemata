@@ -100,8 +100,15 @@ class DatabaseWrapper(original_backend.DatabaseWrapper):
         self._set_oracle_default_schema(cursor)
         return cursor
 
-DatabaseError = original_backend.DatabaseError
-IntegrityError = original_backend.IntegrityError
+try:    
+    DatabaseError = original_backend.DatabaseError
+except AttributeError:
+    pass
+
+try:
+    IntegrityError = original_backend.IntegrityError
+except AttributeError:
+    pass
 
 try:
     Database = original_backend.Database
